@@ -1,0 +1,17 @@
+import type { ComponentType } from "react";
+
+export type LandingPageMeta = {
+  title: string;
+  description: string;
+  ogImage?: string;
+};
+
+export type LandingPageProps = {
+  slug: string;
+};
+
+export type LandingPageEntry = {
+  slug: string;
+  meta: LandingPageMeta;
+  component: ComponentType<LandingPageProps>;
+};

@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Landing Pages Platform
 
-## Getting Started
+Host multiple SaaS waitlist landing pages from one Next.js app. Each idea gets its own subdomain, email capture with UTM attribution, and a password-protected dashboard.
 
-First, run the development server:
+## Stack
+
+- Next.js (App Router) + TypeScript
+- Tailwind CSS
+- Supabase (Postgres)
+- Vercel (wildcard subdomain deployment)
+
+## Quick start
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Copy env file and fill in values:
+
+```bash
+cp .env.example .env.local
+```
+
+3. Create a Supabase project and run the SQL in [`supabase/schema.sql`](./supabase/schema.sql).
+
+4. Start the dev server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Main site: [http://localhost:3000](http://localhost:3000)
+- Demo landing page: [http://demo.localhost:3000](http://demo.localhost:3000)
+- Dashboard: [http://localhost:3000/dashboard](http://localhost:3000/dashboard)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Add a new landing page
 
-## Learn More
+1. Create `landing-pages/<slug>/index.tsx` and `landing-pages/<slug>/meta.ts`
+2. Register the slug in `landing-pages/registry.ts`
+3. Visit `http://<slug>.localhost:3000` locally
+4. In production, `<slug>.yourdomain.com` works automatically via wildcard DNS
 
-To learn more about Next.js, take a look at the following resources:
+Example ad URL:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```text
+https://demo.yourdomain.com/?utm_source=facebook&utm_campaign=demo-test&utm_content=creative-a
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment (Vercel)
 
-## Deploy on Vercel
+1. Push to GitHub and import the repo in Vercel
+2. Add env vars from `.env.example`
+3. Set `ROOT_DOMAIN=yourdomain.com`
+4. Add domains:
+   - `yourdomain.com`
+   - `*.yourdomain.com`
+5. Add DNS records:
+   - Apex/root -> Vercel
+   - `*` CNAME -> Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```text
+app/
+  sites/[slug]/          # internal route for subdomain pages
+  api/waitlist/          # email capture
+  api/dashboard/         # login, signups, export
+  dashboard/             # analytics UI
+landing-pages/
+  demo/                  # example page
+  registry.ts            # slug registry
+middleware.ts            # subdomain routing + dashboard auth
+supabase/schema.sql      # database schema
+```
+
+## Notes
+
+- Waitlist inserts use the Supabase service role key on the server only.
+- Dashboard is protected by `DASHBOARD_PASSWORD`.
+- Privacy and Terms pages are included for ad-platform compliance.
