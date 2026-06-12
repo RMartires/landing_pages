@@ -5,6 +5,7 @@ export type LandingPageMeta = {
   description: string;
   ogImage?: string;
   icon?: string;
+  umamiSiteId?: string;
 };
 
 export type LandingPageProps = {

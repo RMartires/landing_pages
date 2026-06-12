@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Script from "next/script";
 import { AttributionCapture } from "@/components/AttributionCapture";
 import { getLandingPage } from "@/landing-pages/registry";
 
@@ -48,6 +49,14 @@ export default async function SitePage({ params }: SitePageProps) {
     <>
       <AttributionCapture />
       <PageComponent slug={slug} />
+      {page.meta.umamiSiteId && (
+        <Script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id={page.meta.umamiSiteId}
+          strategy="afterInteractive"
+        />
+      )}
     </>
   );
 }
