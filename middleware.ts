@@ -50,6 +50,10 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL("/", request.url));
     }
 
+    if (pathname === "/favicon.ico" && page.meta.icon) {
+      return NextResponse.rewrite(new URL(page.meta.icon, request.url));
+    }
+
     const rewriteUrl = request.nextUrl.clone();
     rewriteUrl.pathname =
       pathname === "/" ? `/sites/${subdomain}` : `/sites/${subdomain}${pathname}`;
@@ -94,5 +98,8 @@ async function protectDashboard(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico|.*\\..*).*)"],
+  matcher: [
+    "/((?!_next/static|_next/image|.*\\..*).*)",
+    "/favicon.ico",
+  ],
 };

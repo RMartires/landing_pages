@@ -20,6 +20,12 @@ export async function generateMetadata({
   return {
     title: page.meta.title,
     description: page.meta.description,
+    icons: page.meta.icon
+      ? {
+          icon: [{ url: page.meta.icon, type: "image/svg+xml" }],
+          apple: [{ url: page.meta.icon, type: "image/svg+xml" }],
+        }
+      : undefined,
     openGraph: {
       title: page.meta.title,
       description: page.meta.description,

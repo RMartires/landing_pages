@@ -3,9 +3,9 @@ import {
   Calendar,
   Clapperboard,
   Mic2,
-  Play,
   Sparkles,
   Wand2,
+  Workflow,
   Zap,
 } from "lucide-react";
 import { WaitlistForm } from "@/components/WaitlistForm";
@@ -36,7 +36,7 @@ const features = [
     icon: Calendar,
     title: "Schedule & post on autopilot",
     description:
-      "Queue drafts, review before they go live, or let ReelForge publish while you sleep.",
+      "Queue drafts, review before they go live, or let FacelessFlow publish while you sleep.",
   },
   {
     icon: Sparkles,
@@ -92,7 +92,7 @@ const faqs = [
   {
     question: "Do I need to show my face or record anything?",
     answer:
-      "No. ReelForge is built for fully faceless channels. You never need a camera, mic, or editing timeline.",
+      "No. FacelessFlow is built for fully faceless channels. You never need a camera, mic, or editing timeline.",
   },
   {
     question: "Can I edit videos before they go live?",
@@ -125,9 +125,9 @@ export default function FacelessLandingPage({ slug }: LandingPageProps) {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <div className="flex items-center gap-2">
             <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-violet-600">
-              <Play className="h-4 w-4 fill-white text-white" />
+              <Workflow className="h-4 w-4 text-white" />
             </div>
-            <span className="text-lg font-semibold tracking-tight">ReelForge</span>
+            <span className="text-lg font-semibold tracking-tight">FacelessFlow</span>
           </div>
           <a
             href="#waitlist"
@@ -140,32 +140,31 @@ export default function FacelessLandingPage({ slug }: LandingPageProps) {
 
       <main>
         {/* Hero */}
-        <section className="relative overflow-hidden px-6 pb-20 pt-16 sm:pb-28 sm:pt-24">
+        <section className="relative overflow-hidden px-6 pb-12 pt-6 sm:pb-20 sm:pt-16 lg:pb-28 lg:pt-24">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(124,58,237,0.35),_transparent_55%)]" />
           <div className="pointer-events-none absolute -right-24 top-20 h-72 w-72 rounded-full bg-fuchsia-600/20 blur-3xl" />
           <div className="pointer-events-none absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-violet-600/20 blur-3xl" />
 
-          <div className="relative mx-auto grid max-w-6xl gap-12 lg:grid-cols-2 lg:items-center">
-            <div>
-              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-violet-400/30 bg-violet-500/10 px-3 py-1 text-xs font-medium text-violet-200">
+          <div className="relative mx-auto flex max-w-6xl flex-col gap-4 sm:gap-8 lg:grid lg:grid-cols-2 lg:items-start lg:gap-12">
+            <div className="lg:col-start-1 lg:row-start-1">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-violet-400/30 bg-violet-500/10 px-3 py-1 text-xs font-medium text-violet-200 sm:mb-5">
                 <Sparkles className="h-3.5 w-3.5" />
-                AI faceless video generator
+                Faceless video automation
               </div>
 
-              <h1 className="max-w-xl text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+              <h1 className="max-w-xl text-3xl font-bold leading-tight tracking-tight sm:text-4xl sm:leading-tight lg:text-6xl">
                 Faceless videos on{" "}
                 <span className="bg-gradient-to-r from-violet-300 to-fuchsia-300 bg-clip-text text-transparent">
                   autopilot
                 </span>
               </h1>
 
-              <p className="mt-5 max-w-xl text-lg leading-8 text-zinc-300">
-                ReelForge creates, edits, and schedules short-form videos for
-                TikTok, Reels, and YouTube Shorts — so you can grow a channel
-                without ever turning on a camera.
+              <p className="mt-4 max-w-xl text-sm leading-6 text-zinc-300 sm:mt-5 sm:text-base sm:leading-7">
+                FacelessFlow creates, edits, and schedules short-form videos for
+                TikTok, Reels, and YouTube Shorts.
               </p>
 
-              <ul className="mt-8 space-y-3 text-sm text-zinc-300">
+              <ul className="mt-6 space-y-2 text-sm text-zinc-300 sm:mt-8 sm:space-y-3">
                 <li className="flex items-center gap-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-violet-400" />
                   Auto-generate scripts, voiceover, visuals &amp; music
@@ -179,18 +178,20 @@ export default function FacelessLandingPage({ slug }: LandingPageProps) {
                   No credit card required to join the waitlist
                 </li>
               </ul>
-
-              <div id="waitlist" className="mt-10 scroll-mt-24">
-                <WaitlistForm
-                  pageSlug={slug}
-                  buttonLabel="Start free"
-                  placeholder="you@email.com"
-                  className="max-w-lg [&_input]:border-white/15 [&_input]:bg-white/5 [&_input]:text-white [&_input]:placeholder:text-zinc-500 [&_button]:bg-violet-600 [&_button]:hover:bg-violet-500 [&_p]:text-zinc-400 [&_a]:text-violet-300"
-                />
-              </div>
             </div>
 
-            <ExampleVideoShowcase />
+            <div id="waitlist" className="scroll-mt-24 lg:col-start-1 lg:row-start-2 lg:mt-10">
+              <WaitlistForm
+                pageSlug={slug}
+                buttonLabel="Start free"
+                placeholder="you@email.com"
+                className="max-w-lg [&_input]:border-white/15 [&_input]:bg-white/5 [&_input]:text-white [&_input]:placeholder:text-zinc-500 [&_button]:bg-violet-600 [&_button]:hover:bg-violet-500 [&_p]:text-zinc-400 [&_a]:text-violet-300"
+              />
+            </div>
+
+            <div className="shrink-0 lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:self-center">
+              <ExampleVideoShowcase />
+            </div>
           </div>
         </section>
 
@@ -214,14 +215,14 @@ export default function FacelessLandingPage({ slug }: LandingPageProps) {
         <section className="px-6 py-20 sm:py-28">
           <div className="mx-auto max-w-6xl">
             <div className="max-w-2xl">
-              <p className="text-sm font-medium text-violet-300">Why ReelForge</p>
+              <p className="text-sm font-medium text-violet-300">Why FacelessFlow</p>
               <h2 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
-                Your AI-powered content system for short-form video
+                One flow from idea to published video
               </h2>
               <p className="mt-4 text-lg text-zinc-400">
-                Create, edit, and schedule faceless videos in one place — inspired
-                by the best of autopilot posting, agent workflows, and
-                prompt-based generation.
+                Create, edit, and schedule faceless videos in one continuous
+                pipeline — script, voiceover, visuals, and posting without
+                switching tools.
               </p>
             </div>
 
@@ -281,8 +282,8 @@ export default function FacelessLandingPage({ slug }: LandingPageProps) {
               Create faceless videos on any topic
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-zinc-400">
-              Pick a proven format or enter your own idea. ReelForge handles the
-              rest — from educational explainers to viral storytime shorts.
+              Pick a proven format or enter your own idea. FacelessFlow handles
+              the rest — from educational explainers to viral storytime shorts.
             </p>
 
             <div className="mt-10 flex flex-wrap justify-center gap-3">
@@ -350,7 +351,7 @@ export default function FacelessLandingPage({ slug }: LandingPageProps) {
 
       <footer className="border-t border-white/10 px-6 py-8">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
-          <p>ReelForge — AI faceless video generator. Join the waitlist for early access.</p>
+          <p>FacelessFlow — AI faceless video generator. Join the waitlist for early access.</p>
           <div className="flex gap-4">
             <Link href="/privacy" className="hover:text-white">
               Privacy Policy

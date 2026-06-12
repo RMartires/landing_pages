@@ -4,6 +4,7 @@ export type LandingPageMeta = {
   title: string;
   description: string;
   ogImage?: string;
+  icon?: string;
 };
 
 export type LandingPageProps = {

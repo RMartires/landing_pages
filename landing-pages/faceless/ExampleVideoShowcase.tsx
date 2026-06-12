@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { exampleVideos } from "./example-videos";
 
 export function ExampleVideoShowcase() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(exampleVideos.length - 1);
   const videoRef = useRef<HTMLVideoElement>(null);
   const active = exampleVideos[activeIndex];
 
@@ -23,17 +23,17 @@ export function ExampleVideoShowcase() {
   return (
     <div className="relative">
       <div
-        className="rounded-2xl border border-white/10 bg-white/5 p-4 shadow-2xl backdrop-blur"
+        className="rounded-2xl border border-white/10 bg-white/5 p-3 shadow-2xl backdrop-blur sm:p-4"
         style={{ boxShadow: `0 0 60px ${active.glowColor}` }}
       >
-        <div className="mb-3 flex items-center justify-between text-xs text-zinc-400">
+        <div className="mb-2 flex items-center justify-between text-xs text-zinc-400 sm:mb-3">
           <span>Example videos</span>
           <span className="rounded-full bg-emerald-500/20 px-2 py-0.5 text-emerald-300">
             AI generated
           </span>
         </div>
 
-        <div className="relative mx-auto aspect-[9/16] max-h-[420px] overflow-hidden rounded-xl bg-black">
+        <div className="relative mx-auto aspect-[9/16] max-h-[240px] overflow-hidden rounded-xl bg-black sm:max-h-[360px] lg:max-h-[420px]">
           <video
             ref={videoRef}
             key={active.src}
@@ -73,7 +73,7 @@ export function ExampleVideoShowcase() {
           </button>
         </div>
 
-        <div className="mt-4 grid grid-cols-5 gap-2">
+        <div className="mt-3 hidden grid-cols-5 gap-2 sm:mt-4 sm:grid">
           {exampleVideos.map((video, index) => (
             <button
               key={video.name}

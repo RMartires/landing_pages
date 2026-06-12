@@ -1,7 +1,8 @@
 import type { LandingPageMeta } from "../types";
 
 export const facelessMeta: LandingPageMeta = {
-  title: "ReelForge — AI Faceless Video Generator for TikTok & YouTube",
+  title: "FacelessFlow — AI Faceless Video Generator for TikTok & YouTube",
   description:
-    "Create, edit, and schedule faceless short-form videos with AI. Scripts, voiceover, visuals, and posting — all on autopilot.",
+    "FacelessFlow creates, edits, and schedules faceless short-form videos with AI. Scripts, voiceover, visuals, and posting — all on autopilot.",
+  icon: "/icons/facelessflow.svg",
 };
