@@ -11,6 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { getAllLandingPageSlugs } from "@/landing-pages/registry";
+import { buildPageUrl, displayHost } from "@/lib/site-url";
 
 type PageSummary = {
   slug: string;
@@ -79,6 +80,11 @@ export function DashboardView() {
   const [signups, setSignups] = useState<SignupRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [host, setHost] = useState<string | null>(null);
+
+  useEffect(() => {
+    setHost(window.location.host);
+  }, []);
 
   useEffect(() => {
     async function loadSignups() {
@@ -254,13 +260,20 @@ export function DashboardView() {
       <div className="mt-10 rounded-xl border border-zinc-200 bg-zinc-50 p-6">
         <h2 className="text-sm font-medium text-zinc-900">Registered pages</h2>
         <ul className="mt-3 space-y-2 text-sm text-zinc-600">
-          {registeredSlugs.map((slug) => (
-            <li key={slug}>
-              <Link href={`http://${slug}.localhost:3000`} className="underline">
-                {slug}.localhost:3000
-              </Link>
-            </li>
-          ))}
+          {registeredSlugs.map((slug) => {
+            const url = host ? buildPageUrl(host, slug) : null;
+            return (
+              <li key={slug}>
+                {url ? (
+                  <Link href={url} className="underline">
+                    {displayHost(url)}
+                  </Link>
+                ) : (
+                  <span>{slug}</span>
+                )}
+              </li>
+            );
+          })}
         </ul>
       </div>
     </main>

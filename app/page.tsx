@@ -1,8 +1,11 @@
 import Link from "next/link";
+import { headers } from "next/headers";
 import { getAllLandingPageSlugs } from "@/landing-pages/registry";
+import { buildPageUrl, displayHost } from "@/lib/site-url";
 
-export default function HomePage() {
+export default async function HomePage() {
   const slugs = getAllLandingPageSlugs();
+  const host = (await headers()).get("host") ?? "localhost:3000";
 
   return (
     <main className="mx-auto flex min-h-full max-w-4xl flex-col px-6 py-16 sm:py-24">
@@ -33,16 +36,16 @@ export default function HomePage() {
       <section className="mt-14 rounded-2xl border border-zinc-200 bg-zinc-50 p-6">
         <h2 className="text-base font-medium text-zinc-900">Live demo pages</h2>
         <ul className="mt-4 space-y-2 text-sm text-zinc-700">
-          {slugs.map((slug) => (
-            <li key={slug}>
-              <a
-                href={`http://${slug}.localhost:3000`}
-                className="underline underline-offset-2"
-              >
-                {slug}.localhost:3000
-              </a>
-            </li>
-          ))}
+          {slugs.map((slug) => {
+            const url = buildPageUrl(host, slug);
+            return (
+              <li key={slug}>
+                <a href={url} className="underline underline-offset-2">
+                  {displayHost(url)}
+                </a>
+              </li>
+            );
+          })}
         </ul>
         <p className="mt-4 text-xs text-zinc-500">
           Local dev uses subdomain routing. In production, use{" "}
