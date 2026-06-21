@@ -14,8 +14,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Landing Pages Platform",
-  description: "Host and validate SaaS landing pages with waitlist capture.",
+  title: "Soonbird — Distraction-free workspace for modern creators",
+  description: "Soonbird is a minimal, distraction-free workspace designed to help you organize your thoughts, plan your projects, and launch your ideas.",
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+  },
 };
 
 export default function RootLayout({
