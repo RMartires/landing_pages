@@ -52,7 +52,10 @@ export default async function SitePage({ params }: SitePageProps) {
       {page.meta.umamiSiteId && (
         <Script
           defer
-          src="https://cloud.umami.is/script.js"
+          src={
+            page.meta.umamiScriptSrc ??
+            "https://cloud.umami.is/script.js"
+          }
           data-website-id={page.meta.umamiSiteId}
           strategy="afterInteractive"
         />
