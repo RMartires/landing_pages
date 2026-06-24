@@ -6,4 +6,5 @@ export const facelessMeta: LandingPageMeta = {
     "FacelessFlow creates, edits, and schedules faceless short-form videos with AI. Scripts, voiceover, visuals, and posting — all on autopilot.",
   icon: "/icons/facelessflow.svg",
   umamiSiteId: "bc4c45f8-1890-45a8-b9c3-018b913b279f",
+  googleTagId: "AW-17738329494",
 };

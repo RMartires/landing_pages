@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { AttributionCapture } from "@/components/AttributionCapture";
+import { GoogleTag } from "@/components/GoogleTag";
 import { getLandingPage } from "@/landing-pages/registry";
 
 type SitePageProps = {
@@ -58,6 +59,7 @@ export default async function SitePage({ params }: SitePageProps) {
           data-website-id={page.meta.umamiSiteId}
         />
       )}
+      {page.meta.googleTagId && <GoogleTag tagId={page.meta.googleTagId} />}
     </>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { readStoredAttribution } from "@/lib/attribution";
+import { trackGenerateLead } from "@/lib/gtag";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -55,6 +56,8 @@ export function WaitlistForm({
       if (!response.ok) {
         throw new Error(data.error ?? "Something went wrong. Please try again.");
       }
+
+      trackGenerateLead(pageSlug);
 
       setState("success");
       setMessage(data.message ?? "You're on the list!");

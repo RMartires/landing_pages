@@ -7,6 +7,7 @@ export type LandingPageMeta = {
   icon?: string;
   umamiSiteId?: string;
   umamiScriptSrc?: string;
+  googleTagId?: string;
 };
 
 export type LandingPageProps = {
